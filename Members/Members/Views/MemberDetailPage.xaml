@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Members.Views.MemberDetailPage">
+    <ScrollView>
+        <StackLayout Spacing="30" Padding="15" HorizontalOptions="CenterAndExpand">
+            <Label Text="Informacje o uczestniku" Style="{StaticResource HeaderTextStyle}"/>
+            <StackLayout Orientation="Vertical">
+                <BoxView Style="{StaticResource VerticalLineStyle}"/>
+            </StackLayout>
+            <Label Text="{Binding Name}" Style="{StaticResource HeaderTextStyle}"/>
+
+            <Frame Style="{StaticResource DescriptionFrameStyle}" BackgroundColor="#FFFFF0">
+                <Label Text="{Binding Experience}" Style="{StaticResource DescriptionLabelStyle}"/>
+                
+            </Frame>
+
+            <Grid Style="{StaticResource DescriptionFrameStyle }" Padding="30,-40,50,10" HeightRequest="280" BackgroundColor="#FFFFF0">
+                <Label Grid.Row="1" Grid.Column="1" Text="Wiek:" Style="{StaticResource DetailsLabelStyle}" Padding="-70,0,0,0"/>
+                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Age}" Style="{StaticResource DetailsTextStyle}" Padding="-65,0,10,0"/>        
+                <Label Grid.Row="2" Grid.Column="1" Text="Telefon:" Style="{StaticResource DetailsLabelStyle}" Padding="-70,-6,0,0"/>
+                <Label Grid.Row="2" Grid.Column="2" Text="{Binding PhoneNumber}" Style="{StaticResource DetailsTextStyle}" Padding="-30,-6,-25,0"/>
+                <Label Grid.Row="3" Grid.Column="1" Text="Email:" Style="{StaticResource DetailsLabelStyle}" Padding="-70,-6,0,-100"/>
+                <Label Grid.Row="3" Grid.Column="2" Text="{Binding Email}" Style="{StaticResource DetailsTextStyle}" Padding="-70,-6,-130,0"/>
+                <Label Grid.Row="4" Grid.Column="1" Text="Miasto:" Style="{StaticResource DetailsLabelStyle}" Padding="-70,-6,-150,0"/>
+                <Label Grid.Row="4" Grid.Column="2" Text="{Binding City}" Style="{StaticResource DetailsTextStyle}" Padding="-70,-6,-130,10"/>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

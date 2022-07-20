@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local="clr-namespace:Members.Views"
+              Title="Members"
+             x:Class="Members.AppShell">
+    
+   
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="MasterStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="Shell.ForegroundColor" Value="White"/>
+                <Setter Property="Shell.TitleColor" Value="White"/>
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF"/>
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarBackgroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource MasterStyle}"/>
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource MasterStyle}"/>
+            <Style Class="FlyoutItemLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+            
+            <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{x:OnPlatform Android=White, UWP=White}"/>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}"/>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.FontSize" Value="16"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.FontSize" Value="16"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style Class="MenuItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups" >
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="Black"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+    
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <StackLayout Padding="1,10,10,100">
+
+                <Image Source="memlogo.png"/>
+
+            </StackLayout>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
+    
+    <FlyoutItem Title="Uczęstniki na zawody">
+        <Shell.FlyoutBackdrop>
+            <LinearGradientBrush StartPoint="0,0"
+                               EndPoint="1,1">
+                <GradientStop Color="#808000"
+                            Offset="0.1" />
+                <GradientStop Color="#BDB76B"
+                            Offset="0.6" />
+                <GradientStop Color="#F5F5DC"
+                            Offset="1.0" />
+            </LinearGradientBrush>
+        </Shell.FlyoutBackdrop>
+        <ShellContent Route="MembersListPage" ContentTemplate="{DataTemplate local:MemberListPage}"/>
+    </FlyoutItem>
+
+    <TabBar>
+        <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}"/>
+        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}"/>
+    </TabBar>
+    <MenuItem Icon="home.png" Text="Strona główna" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuLeaveItem_Clicked"/>
+    <MenuItem Icon="osoba.png" Text="Dodaj uczestnika" StyleClass="MenuItemLayoutStyle" Clicked="MenuAddItem_Clicked"/>
+    <MenuItem Icon="mapa.png" Text="Mapa" StyleClass="MenuItemLayoutStyle" Clicked="TwoMenuLeaveItem_Clicked"/>
+    
+
+    
+    
+    
+    
+    </Shell>

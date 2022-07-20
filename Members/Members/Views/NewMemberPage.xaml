@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Members.Views.NewMemberPage"     
+             xmlns:local="clr-namespace:Members.ViewModels"
+             Shell.PresentationMode="Animated">
+    
+    <ContentPage.Resources>
+        <Style x:Key="EntryTextAndTriggerStyle" TargetType="Entry">
+            <Style.Triggers>
+                <Trigger TargetType="Entry" Property="IsFocused" Value="True">
+                    <Setter Property="BackgroundColor" Value="#f2f8fb"/>
+                    <Setter Property="FontSize" Value="Large"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="Gray"/>
+        </Style>
+        <Style x:Key="EditorTextAndTriggerStyle" TargetType="Editor">
+            <Style.Triggers>
+                <Trigger TargetType="Editor" Property="IsFocused" Value="True">
+                    <Setter Property="BackgroundColor" Value="#f2f8fb"/>
+                    <Setter Property="FontSize" Value="Large"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="Gray"/>
+            <Setter Property="AutoSize" Value="TextChanges"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <local:NewMemberViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="3" Padding="15">
+                <Label Text="Dane kontaktowe " Style="{StaticResource HeaderTextStyle}" Margin="0,5,0,15"/>
+                <Label Text="Imię i nazwisko" Style="{StaticResource LabelTextStyle}"/>
+                <Entry Text="{Binding Member.Name, Mode=TwoWay}" Style="{StaticResource EntryTextAndTriggerStyle}"/>
+                <Label Text="Doświadczenie" Style="{StaticResource LabelTextStyle}"/>
+                <Editor Text="{Binding Member.Experience, Mode=TwoWay}" Style="{StaticResource EditorTextAndTriggerStyle}"/>                                  
+                
+                <Label Text="Wiek" Style="{StaticResource LabelTextStyle}"/>
+                <Entry Text="{Binding Member.Age, Mode=TwoWay}" Style="{StaticResource EntryTextAndTriggerStyle}"/>               
+                
+                <Label Text="Numer telefonu" Style="{StaticResource LabelTextStyle}"/>
+                <Entry Text="{Binding Member.PhoneNumber, Mode=TwoWay}" Style="{StaticResource EntryTextAndTriggerStyle}" Keyboard="Telephone">
+                </Entry>
+                <Label Text="Adres email" Style="{StaticResource LabelTextStyle}"/>
+                <Entry Text="{Binding Member.Email, Mode=TwoWay}" Style="{StaticResource EntryTextAndTriggerStyle}" Keyboard="Email"/>
+                <Label Text="Miasto" Style="{StaticResource LabelTextStyle}"/>
+                <Entry Text="{Binding Member.City, Mode=TwoWay}" Style="{StaticResource EntryTextAndTriggerStyle}" Margin="0,0,0,15"/>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Anuluj" Command="{Binding CancelCommand}" Style="{StaticResource AddButtonsStyle}"/>
+                    <Button Text="Zapisz" Command="{Binding SaveMemberCommand}" Style="{StaticResource AddButtonsStyle}"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     
+             x:Class="Members.Views.AboutPage"
+             Title="Mapa"
+             Shell.PresentationMode="Animated">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="mapa.png" Command="{Binding ShowMapsCommand}"/>
+        <ToolbarItem Icon="local.png" Command="{Binding ShowMyPositionCommand}"/>
+        
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="	#FFFFF0">
+
+            
+               
+
+                       
+                        <StackLayout Style="{StaticResource MapPageStackLayoutStyle}" >
+
+                            <ContentPresenter Content="{Binding GoogleMaps}"  WidthRequest="600"  />
+
+                        </StackLayout>
+                    
+                    
+              
+            
+        </StackLayout>
+    </ContentPage.Content>
+    
+        
+   
+    
+ 
+</ContentPage>

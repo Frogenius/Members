@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Members.Views.MemberListPage"             
+             Title="Zarejestrowani członkowie"
+             xmlns:local="clr-namespace:Members.ViewModels"
+             xmlns:model="clr-namespace:Members.Models">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="add.png" Command="{Binding AddMemberCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="	#FFFFF0">
+
+            <RefreshView x:DataType="local:MemberViewModel" Command="{Binding LoadMembersCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+                <CollectionView SelectionMode="Single" ItemsSource="{Binding Members}" SelectionChanged="Members_SelectionChanged">
+                    <CollectionView.ItemTemplate BackgroundColor="#27619b">
+                        <DataTemplate>
+                            <StackLayout x:DataType="model:Member" >
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem IconImageSource="delete.png" BackgroundColor="#FFFFF0" 
+                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type local:MemberViewModel}}, Path=DeleteMemberCommand}" CommandParameter="{Binding .}"/>
+                                            <SwipeItem IconImageSource="edit.png" BackgroundColor="#FFFFF0" 
+                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type local:MemberViewModel}}, Path=EditMemberCommand}" CommandParameter="{Binding .}"/>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <Grid Padding="3" BackgroundColor="#FFFFF0">
+                                        <Frame CornerRadius="20" HasShadow="True">
+                                            <StackLayout Orientation="Horizontal" >
+                                                
+                                                <StackLayout>
+                                                    <Label Grid.Column="1" Text="{Binding Name}" FontSize="15" TextColor="black" FontAttributes="Bold"/>
+                                                    <Label Grid.Column="2" Grid.Row="1" Text="{Binding Experience}" TextColor="#556B2F" Style="{StaticResource ExtraInfoListStyle}"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
+                                </SwipeView>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
