@@ -17,5 +17,5 @@
 ![alt text](jpg/menu.png)
 #### При выдвигании меню можно увидеть полупрозрачный градиент
 ![alt text](jpg/gradient.png)
-### O nas
-![alt text](jpg/ed.png)
+#### Карта подключенная через google API
+![alt text](jpg/mapa.png)
